@@ -24,8 +24,8 @@ unet = UNet(
     num_fmaps=24,  # this needs to be increased later (24)
     fmap_inc_factor=3,  # this needs to be increased later (3)
     downsample_factors=[[1, 2, 2], [1, 2, 2], [1, 2, 2],],
-    kernel_size_down=[[[3, 3, 3], [3, 3, 3]]]*3,
-    kernel_size_up=[[[3, 3, 3], [3, 3, 3]]]*2,
+    kernel_size_down=[[[3, 3, 3], [3, 3, 3]]]*4,
+    kernel_size_up=[[[3, 3, 3], [3, 3, 3]]]*3,
     padding='valid')
 model = torch.nn.Sequential(
     unet,
@@ -66,7 +66,7 @@ sourceB = gp.ZarrSource(
         seg: gp.ArraySpec(interpolatable=False)
     }
 )
-sourceC = gp.ZarrSouce(
+sourceC = gp.ZarrSource(
     '../data/cropped_sample_C.zarr',
     {raw: 'raw', seg: 'segmentation'},
     {
