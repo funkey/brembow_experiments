@@ -185,7 +185,7 @@ def render_into_zarr(batch):
         f['prediction'].attrs['offset'] = batch[prediction].spec.roi.get_begin()
 
 with gp.build(pipeline):
-    for i in range(5000):
+    for i in range(100000):
         batch = pipeline.request_batch(request)
         with open('loss.txt', 'a') as file:
             file.write(str(batch.iteration) + ", "  + str(batch.loss) + "\n")
